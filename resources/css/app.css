@@ -178,3 +178,7 @@ input {
 .input-error {
     background: pink;
 }
+
+img {
+    width: 50px;
+}
