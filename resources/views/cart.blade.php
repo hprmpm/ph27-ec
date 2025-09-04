@@ -1,24 +1,26 @@
 @extends('layouts.base')
 
 @section('content')
-    <h2>カート</h2>
-    @if (empty($items))
-        <p>カートは空です。</p>
-    @else
-        <ul>
-            @foreach ($items as $item)
-                <li>
-                    {{ $item['product']->name }} - {{ $item['product']->price }}円 - {{ $item['quantity'] }}個
-                </li>
-            @endforeach
-        </ul>
-        <p>合計金額: {{ $totalPrice }}円</p>
+    <h1>カート</h1>
+    @foreach ($items as $item)
+        <div>
+            {{ $item['product']->name }}
+            {{ $item['product']->price }} 円
+            {{ $item['quantity'] }} 個
+        </div>
+    @endforeach
+    @if ($totalPrice > 0)
+        <div>
+            合計金額: {{ $totalPrice }}円
+        </div>
     @endif
-    <form action="{{ route('cart.destroy') }}" method="POST">
+    <form action={{ route('cart.destroy') }} method="POST">
         @csrf
         @method('DELETE')
         <input type="submit" value="カートを空にする">
     </form>
-    <br>
-    <a href="{{ route('products.index') }}">商品一覧に戻る</a>
+    <form action={{ route('order') }} method="POST">
+        @csrf
+        <input type="submit" value="購入する">
+    </form>
 @endsection

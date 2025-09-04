@@ -12,7 +12,7 @@ class CartController extends Controller
         $request->validate([
             'quantity' => ['required', 'integer', 'min:1'],
         ], [
-            'quantity' => '個数を入力してください。',
+            'quantity' => '正しい個数を入力してください。',
         ]);
 
         $productId = $request->input('productId');
