@@ -160,7 +160,6 @@
 
 h1 {
     font-size: 25px;
-    background: #cfcfcf;
 }
 
 h2 {
@@ -168,7 +167,7 @@ h2 {
 }
 
 a {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 input {

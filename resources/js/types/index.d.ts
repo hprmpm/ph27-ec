@@ -1,5 +1,17 @@
 import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
+import type { AxiosInstance } from 'axios'
+import type { route as routeFn } from 'ziggy-js'
+import type { User } from '@/types/user'
+
+declare global {
+    interface Window {
+        axios: AxiosInstance
+    }
+
+    // eslint-disable-next-line no-var
+    var route: typeof routeFn
+}
 
 export interface Auth {
     user: User;
@@ -31,7 +43,7 @@ export interface SharedData {
     [key: string]: unknown;
 }
 
-export interface User {
+/** export interface User {
     id: number;
     name: string;
     email: string;
@@ -39,5 +51,39 @@ export interface User {
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;
-    [key: string]: unknown; // This allows for additional properties...
-}
+    [key: string]: unknown;
+} **/
+
+export type PageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
+    auth: {
+        user: User;
+    };
+    cart: {
+        count: number;
+    }
+};
+
+export type User = {
+    id: number;
+    name: string;
+    email: string;
+    email_verified_at: string | null;
+    state: string | null;
+    postal_code: string | null;
+    city: string | null;
+    street_address: string | null;
+    building: string | null;
+    phone_number: string | null;
+    avatar?: string; 
+};
+
+export type Product = {
+    id: number;
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    stock: number;
+    created_at: string;
+    updated_at: string;
+};

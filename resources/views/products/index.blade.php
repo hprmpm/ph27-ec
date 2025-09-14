@@ -7,6 +7,8 @@
         @foreach ($products as $product)
             <li>
                 <a href="{{ route('products.show', ['id' => $product->id]) }}">
+                    {{-- 写真展示 --}}
+                    <img src="{{ $product->image }}" alt="{{ $product->name }}" width="100">
                     {{ $product->name }}
                 </a>
                 {{ $product->price }} 円
@@ -15,10 +17,13 @@
     </ul>
 
     <h2>セール中の商品</h2>
+
     <ul>
         @foreach ($saleProducts as $product)
             <li>
-                {{ $product->name }}
+                <a href="{{ route('products.show', ['id' => $product->id]) }}">
+                    {{ $product->name }}
+                </a>
                 {{ $product->price }} 円
             </li>
         @endforeach

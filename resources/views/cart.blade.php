@@ -1,4 +1,4 @@
-@extends('layouts.base')
+<!-- @extends('layouts.base')
 
 @section('content')
     <h1>カート</h1>
@@ -19,8 +19,7 @@
         @method('DELETE')
         <input type="submit" value="カートを空にする">
     </form>
-    <form action={{ route('order') }} method="POST">
-        @csrf
-        <input type="submit" value="購入する">
-    </form>
-@endsection
+    <form action="{{ route('checkout.index') }}" method="GET">
+    <input type="submit" value="購入手続きへ進む">
+</form>
+@endsection -->

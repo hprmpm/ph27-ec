@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,7 @@ class ProductController extends Controller
 
         $saleProducts = Product::where('price', '<', 100)->get();
 
-        return view('products.index', [
+        return Inertia::render('Products/Index', [
             'products' => $products,
             'saleProducts' => $saleProducts,
         ]);
@@ -20,11 +21,10 @@ class ProductController extends Controller
 
     public function show(int $id)
     {
-        // ID が一致するデータを取得する
-        // 存在しないIDが指定されたら404になる
+
         $product = Product::findOrFail($id);
 
-        return view('products.show', [
+        return Inertia::render('Products/Show', [
             'product' => $product,
         ]);
     }
