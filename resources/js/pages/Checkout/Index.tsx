@@ -1,6 +1,6 @@
 import { Head, useForm, Link } from '@inertiajs/react';
 import React, { useState } from 'react';
-import GuestLayout from '@/layouts/GuestLayout'; // ★★★ AppLayoutからGuestLayoutに変更 ★★★
+import GuestLayout from '@/layouts/GuestLayout';
 import { User } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -10,7 +10,6 @@ import { InputError } from '@/components/input-error';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { CheckCircle } from 'lucide-react';
 
-// 型定義
 interface CartItem {
     id: number;
     name: string;
@@ -19,7 +18,6 @@ interface CartItem {
     quantity: number;
     subtotal: number;
 }
-// ★★★ Controllerから渡されるPropsの型を更新 ★★★
 interface CheckoutProps {
     user: User;
     cartItems: CartItem[];
@@ -56,7 +54,6 @@ export default function CheckoutIndex({ user, cartItems, total }: CheckoutProps)
     }
 
     return (
-        // ★★★ レイアウトを変更 ★★★
         <GuestLayout>
             <Head title="購入手続き" />
             <div className="container mx-auto p-4 md:p-6 lg:p-8">
@@ -109,7 +106,6 @@ export default function CheckoutIndex({ user, cartItems, total }: CheckoutProps)
                                 <CardTitle>ご注文内容</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                {/* ★★★ 'cartItems' を使って商品リストを表示 ★★★ */}
                                 {cartItems.map(item => (
                                     <div key={item.id} className="flex justify-between items-center py-2 border-b">
                                         <div>
@@ -121,7 +117,6 @@ export default function CheckoutIndex({ user, cartItems, total }: CheckoutProps)
                                 ))}
                                 <div className="flex justify-between font-bold text-lg pt-4">
                                     <p>合計金額</p>
-                                    {/* ★★★ 'total' prop を使って合計金額を表示 ★★★ */}
                                     <p>{total.toLocaleString()} 円</p>
                                 </div>
                             </CardContent>
@@ -133,7 +128,6 @@ export default function CheckoutIndex({ user, cartItems, total }: CheckoutProps)
                 </form>
             </div>
 
-            {/* 注文完了モーダル */}
             <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <DialogContent>
                     <DialogHeader>

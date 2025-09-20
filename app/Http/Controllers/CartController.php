@@ -9,7 +9,7 @@ use Inertia\Inertia;
 class CartController extends Controller
 {
     /**
-     * Display the cart page.
+     * Display the cart page
      */
     public function index()
     {
@@ -17,7 +17,6 @@ class CartController extends Controller
         $cartItems = [];
         $total = 0;
 
-        // Eager load products to avoid N+1 query problem
         $products = Product::whereIn('id', array_keys($sessionCart))->get()->keyBy('id');
 
         foreach ($sessionCart as $productId => $quantity) {
@@ -42,7 +41,7 @@ class CartController extends Controller
     }
 
     /**
-     * Add a product to the cart.
+     * Add a product to the cart
      */
     public function add(Request $request)
     {
@@ -57,7 +56,7 @@ class CartController extends Controller
     }
 
     /**
-     * Remove a product from the cart.
+     * Remove a product from the cart
      */
     public function remove(Request $request)
     {
@@ -74,7 +73,7 @@ class CartController extends Controller
     }
 
     /**
-     * Update product quantity in the cart.
+     * Update product quantity in the cart
      */
     public function update(Request $request)
     {
